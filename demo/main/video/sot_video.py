@@ -131,10 +131,13 @@ def main(args):
 
     # loop over sequence
     frame_idx = 0  # global frame index
+    print(frame_idx)
     while vs.isOpened():
+        print(frame_idx)
         key = 255
         ret, frame = vs.read()
-        if ret:
+        print(ret)
+        if True:
             logger.debug("frame: {}".format(frame_idx))
             if template is not None:
                 time_a = time.time()
@@ -150,8 +153,8 @@ def main(args):
                             font_width)
                 cv2.rectangle(show_frame, bbox_pred[:2], bbox_pred[2:],
                               (0, 255, 0))
-                if template is not None:
-                    show_frame[:128, :128] = template
+                #if template is not None:
+                #    show_frame[:128, :128] = template
             else:
                 show_frame = frame
             show_frame = cv2.resize(

@@ -33,6 +33,7 @@ def load_image(img_file: str) -> np.array:
     if not osp.isfile(img_file):
         logger.info("Image file %s does not exist." % img_file)
     # read with OpenCV
+    print('image file', img_file)
     img = cv2.imread(img_file, cv2.IMREAD_COLOR)
     if img is None:
         # retrying
@@ -73,7 +74,8 @@ class ImageFileVideoStream:
         frame_file = self._state["frame_files"][frame_idx]
         frame_img = load_image(frame_file)
         self._state["counter"] += 1
-        return frame_idx, frame_img
+        ret = not frame_file is None
+        return ret, frame_img
 
     def release(self, ):
         self._state["counter"] = 0
